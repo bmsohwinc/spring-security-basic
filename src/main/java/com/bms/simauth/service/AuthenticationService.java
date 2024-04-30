@@ -2,6 +2,7 @@ package com.bms.simauth.service;
 
 import com.bms.simauth.domain.ApplicationUser;
 import com.bms.simauth.domain.LoginResponseDTO;
+import com.bms.simauth.domain.Message;
 import com.bms.simauth.domain.Role;
 import com.bms.simauth.repository.RoleRepository;
 import com.bms.simauth.repository.UserRepository;
@@ -42,7 +43,9 @@ public class AuthenticationService {
         Set<Role> roles = new HashSet<>();
         roles.add(role);
 
-        return userRepository.save(new ApplicationUser(0, username, encodedPassword, roles));
+        Set<Message> messages = new HashSet<>();
+
+        return userRepository.save(new ApplicationUser(0, username, encodedPassword, roles, messages));
     }
 
     public LoginResponseDTO loginUser(String username, String password) {

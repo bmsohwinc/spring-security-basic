@@ -38,6 +38,14 @@ public class ApplicationUser implements UserDetails {
     )
     private Set<Role> authorities = new HashSet<>();
 
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_message_junction",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "message_id")}
+    )
+    private Set<Message> messages = new HashSet<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.authorities;

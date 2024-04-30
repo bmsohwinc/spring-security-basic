@@ -1,6 +1,7 @@
 package com.bms.simauth;
 
 import com.bms.simauth.domain.ApplicationUser;
+import com.bms.simauth.domain.Message;
 import com.bms.simauth.domain.Role;
 import com.bms.simauth.repository.RoleRepository;
 import com.bms.simauth.repository.UserRepository;
@@ -32,7 +33,9 @@ public class SimauthApplication {
 			Set<Role> roles = new HashSet<>();
 			roles.add(savedAdminRole);
 
-			ApplicationUser adminUser = new ApplicationUser(1, "admin", passwordEncoder.encode("password"), roles);
+			Set<Message> messages = new HashSet<>();
+
+			ApplicationUser adminUser = new ApplicationUser(1, "admin", passwordEncoder.encode("password"), roles, messages);
 			userRepository.save(adminUser);
 
 		};
